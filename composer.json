@@ -9,9 +9,12 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.5",
-        "zendframework/zendframework": "~2.5"
+        "zendframework/zendframework": "~2.5",
+         "doctrine/common": "2.5.0"
     },
-	"autoload": {
-     "psr-0": { "Album": "module/Album/src/" }
-	}
+    "autoload": {
+        "psr-0": {
+            "Album": "module/Album/src/"
+        }
+    }
 }
