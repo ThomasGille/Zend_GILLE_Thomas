@@ -64,7 +64,7 @@ class AuthController extends AbstractActionController
         return array(
             'form'      => $form,
             'messages'  => $this->flashmessenger()->getMessages()
-        );
+        );  
     }
      
     public function authenticateAction()
@@ -96,6 +96,8 @@ class AuthController extends AbstractActionController
                              ->setRememberMe(1);
                         //set storage again 
                         $this->getAuthService()->setStorage($this->getSessionStorage());
+                        
+                        $user= $this->authservice()->
                     }
                     $this->getAuthService()->getStorage()->write($request->getPost('username'));
                 }
