@@ -11,12 +11,13 @@ class Album {
     public $id;
     public $artist;
     public $title;
-    protected $inputFilter;       
+    protected $inputFilter;    
    
     public function exchangeArray($data) {
         $this->id = (!empty($data['id'])) ? $data['id'] : null;
         $this->artist = (!empty($data['artist'])) ? $data['artist'] : null;
         $this->title = (!empty($data['title'])) ? $data['title'] : null;
+        $this->idUser = (!empty($data['idUser'])) ? $data['idUser'] : null;
     }
     
     // Add the following method:

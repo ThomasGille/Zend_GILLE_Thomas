@@ -23,15 +23,15 @@ body {
 .btn-success.active,
 .btn-success.disabled,
 .btn-success[disabled] {
-    background-color: #57a900;
+    background-color: #FF0000;//#57a900
 }
 
 .btn-success:active, .btn-success.active {
-    background-color: #57a900;
+    background-color: #00FF00;
 }
 
 div.container a.brand {
-    background: url("../img/zf2-logo.png") no-repeat scroll 0 10px transparent;
+    background: url("../img/LOL.png") no-repeat scroll 0 10px transparent;
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }

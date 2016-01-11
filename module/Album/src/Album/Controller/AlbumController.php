@@ -9,9 +9,12 @@ use Zend\View\Model\ViewModel;
  
 class AlbumController extends AbstractActionController {
     protected $albumTable;
+//    protected $user;
     public function indexAction() {
+        
+        $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
         return new ViewModel(array(
-             'albums' => $this->getAlbumTable()->fetchAll(),
+             'albums' => $this->getAlbumTable()->getAlbumByIdUser($user->idUser)
          ));
     }
 

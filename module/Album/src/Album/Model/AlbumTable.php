@@ -16,6 +16,16 @@ class AlbumTable {
         $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
+    
+    
+    public function getAlbumByIdUser($id) {
+        $idUser = (int) $id;
+        $rowset = $this->tableGateway->select(array('idUser' => $idUser));
+        if (!$rowset) {
+            throw new \Exception("Could not find row $idUser");
+        }
+        return $rowset;
+    }
 
     public function getAlbum($id) {
         $id = (int) $id;
