@@ -26,7 +26,7 @@ INSERT INTO `users` (`idUser`, `user_name`, `pass_word`) VALUES
 
 CREATE TABLE IF NOT EXISTS `livre` (
   `id` int(11) NOT NULL,
-  `titre` varchar(30) NOT NULL
+  `title` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `livre`
