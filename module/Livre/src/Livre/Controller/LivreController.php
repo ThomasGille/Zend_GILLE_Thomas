@@ -83,7 +83,7 @@ class LivreController extends AbstractActionController {
     }
 
     public function critiqueAction() {
-
+       
     }
 
     public function deleteAction() {
