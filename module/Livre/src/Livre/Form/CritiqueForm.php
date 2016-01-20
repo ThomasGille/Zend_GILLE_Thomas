@@ -26,9 +26,9 @@ class CritiqueForm extends Form {
         ));
         $this->add(array(
             'name' => 'Note',
-            'type' => 'Hidden',
+            'type' => 'text',
             'options' => array(
-                'label' => 'Auteur',
+                'label' => 'Note',
             ),
         ));
         $this->add(array(
