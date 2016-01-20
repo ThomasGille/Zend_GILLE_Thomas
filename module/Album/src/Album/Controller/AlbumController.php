@@ -12,7 +12,8 @@ class AlbumController extends AbstractActionController {
 //    protected $user;
     public function indexAction() {
         
-        $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();print_r($user);
+        $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
+        //print_r($user);
         return new ViewModel(array(
              'albums' => $this->getAlbumTable()->getAlbumByIdUser($user->idUser)
          ));
@@ -105,6 +106,7 @@ class AlbumController extends AbstractActionController {
              'album' => $this->getAlbumTable()->getAlbum($id)
          );
     }
+    
     public function getAlbumTable()
      {
          if (!$this->albumTable) {
