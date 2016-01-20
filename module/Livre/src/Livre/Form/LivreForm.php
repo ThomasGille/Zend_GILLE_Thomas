@@ -36,13 +36,6 @@ namespace Livre\Form;
              ),
          ));
          $this->add(array(
-             'name' => 'note',
-             'type' => 'int',
-             'options' => array(
-                 'label' => 'Note',
-             ),
-         ));
-         $this->add(array(
              'name' => 'submit',
              'type' => 'Submit',
              'attributes' => array(
