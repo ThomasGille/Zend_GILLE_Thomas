@@ -1,10 +1,10 @@
 <?php
 
-namespace Album\Model;
+namespace Livre\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class AlbumTable {
+class LivreTable {
 
     protected $tableGateway;
 
@@ -18,7 +18,7 @@ class AlbumTable {
     }
     
     
-    public function getAlbumByIdUser($id) {
+    public function getLivreByIdUser($id) {
         $idUser = (int) $id;
         $rowset = $this->tableGateway->select(array('idUser' => $idUser));
         if (!$rowset) {
@@ -27,7 +27,7 @@ class AlbumTable {
         return $rowset;
     }
 
-    public function getAlbum($id) {
+    public function getLivre($id) {
         $id = (int) $id;
         $rowset = $this->tableGateway->select(array('id' => $id));
         $row = $rowset->current();
@@ -37,25 +37,25 @@ class AlbumTable {
         return $row;
     }
 
-    public function saveAlbum(Album $album) {
+    public function saveLivre(Livre $livre) {
         $data = array(
-            'artist' => $album->artist,
-            'title' => $album->title,
+            'artist' => $livre->artist,
+            'title' => $livre->title,
         );
 
-        $id = (int) $album->id;
+        $id = (int) $livre->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
         } else {
-            if ($this->getAlbum($id)) {
+            if ($this->getLivre($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Album id does not exist');
+                throw new \Exception('Livre id does not exist');
             }
         }
     }
 
-    public function deleteAlbum($id) {
+    public function deleteLivre($id) {
         $this->tableGateway->delete(array('id' => (int) $id));
     }
 
