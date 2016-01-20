@@ -15,7 +15,7 @@ class LivreController extends AbstractActionController {
         $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
         //print_r($user);
         return new ViewModel(array(
-             'livres' => $this->getLivreTable()->getLivre($user->idUser)
+             'livres' => $this->getLivreTable()->fetchAll()
          ));
     }
 
