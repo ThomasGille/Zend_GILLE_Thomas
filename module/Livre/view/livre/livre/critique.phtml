@@ -1,1 +1,16 @@
 <?php
+ // module/Livre/view/livre/livre/add.phtml:
+
+ $title = 'Add critizm';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <?php
+ $form->setAttribute('action', $this->url('livre', array('action' => 'critique')));
+ $form->prepare();
+
+ echo $this->form()->openTag($form);
+ echo $this->formHidden($form->get('id'));
+ echo $this->formRow($form->get('note'));
+ echo $this->formSubmit($form->get('submit'));
+ echo $this->form()->closeTag();
