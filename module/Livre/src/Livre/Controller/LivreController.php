@@ -82,6 +82,10 @@ class LivreController extends AbstractActionController {
          );
     }
 
+    public function critiqueAction() {
+
+    }
+
     public function deleteAction() {
         $id = (int) $this->params()->fromRoute('id', 0);
          if (!$id) {
