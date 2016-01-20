@@ -6,6 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
  use Livre\Model\Livre;          // <-- Add this import
  use Livre\Form\LivreForm;       // <-- Add this import
+use Livre\Form\CritiqueForm;
  
 class LivreController extends AbstractActionController {
     protected $livreTable;
@@ -83,7 +84,24 @@ class LivreController extends AbstractActionController {
     }
 
     public function critiqueAction() {
-       
+        $form = new CritiqueForm();
+        $form->get('submit')->setValue('Add');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $livre = new Livre();
+            $form->setInputFilter($livre->getInputFilter());
+            $form->setData($request->getPost());
+
+            if ($form->isValid()) {
+                $livre->exchangeArray($form->getData());
+                $this->getLivreTable()->saveLivre($livre);
+
+                // Redirect to list of livres
+                return $this->redirect()->toRoute('livre');
+            }
+        }
+        return array('form' => $form);
     }
 
     public function deleteAction() {
