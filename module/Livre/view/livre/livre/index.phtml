@@ -1,12 +1,12 @@
 <?php
- // module/Album/view/album/album/index.phtml:
+ // module/Livre/view/livre/livre/index.phtml:
 
- $title = 'My albums';
+ $title = 'My livres';
  $this->headTitle($title);
  ?>
  <h1><?php echo $this->escapeHtml($title); ?></h1>
  <p>
-     <a href="<?php echo $this->url('album', array('action'=>'add'));?>">Add new album</a>
+     <a href="<?php echo $this->url('livre', array('action'=>'add'));?>">Add new livre</a>
  </p>
 
  <table class="table">
@@ -15,16 +15,16 @@
      <th>Artist</th>
      <th>&nbsp;</th>
  </tr>
- <?php foreach ($albums as $album) : ?>
+ <?php foreach ($livres as $livre) : ?>
  <tr>
      <td><?php
-     echo $this->escapeHtml($album->title);?></td>
-     <td><?php echo $this->escapeHtml($album->artist);?></td>
+     echo $this->escapeHtml($livre->title);?></td>
+     <td><?php echo $this->escapeHtml($livre->artist);?></td>
      <td>
-         <a href="<?php echo $this->url('album',
-             array('action'=>'edit', 'id' => $album->id));?>">Edit</a>
-         <a href="<?php echo $this->url('album',
-             array('action'=>'delete', 'id' => $album->id));?>">Delete</a>
+         <a href="<?php echo $this->url('livre',
+             array('action'=>'edit', 'id' => $livre->id));?>">Edit</a>
+         <a href="<?php echo $this->url('livre',
+             array('action'=>'delete', 'id' => $livre->id));?>">Delete</a>
      </td>
  </tr>
  <?php endforeach; ?>
