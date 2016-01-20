@@ -6,16 +6,16 @@
  * and open the template in the editor.
  */
 
-namespace Album\Form;
+namespace Livre\Form;
 
  use Zend\Form\Form;
 
- class AlbumForm extends Form
+ class LivreForm extends Form
  {
      public function __construct($name = null)
      {
          // we want to ignore the name passed
-         parent::__construct('album');
+         parent::__construct('livre');
 
          $this->add(array(
              'name' => 'id',

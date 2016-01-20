@@ -1,40 +1,40 @@
 <?php
 
-namespace Album\Controller;
+namespace Livre\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
- use Album\Model\Album;          // <-- Add this import
- use Album\Form\AlbumForm;       // <-- Add this import
+ use Livre\Model\Livre;          // <-- Add this import
+ use Livre\Form\LivreForm;       // <-- Add this import
  
-class AlbumController extends AbstractActionController {
-    protected $albumTable;
+class LivreController extends AbstractActionController {
+    protected $livreTable;
 //    protected $user;
     public function indexAction() {
         
         $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
         //print_r($user);
         return new ViewModel(array(
-             'albums' => $this->getAlbumTable()->getAlbumByIdUser($user->idUser)
+             'livres' => $this->getLivreTable()->getLivreByIdUser($user->idUser)
          ));
     }
 
     public function addAction() {
-        $form = new AlbumForm();
+        $form = new LivreForm();
          $form->get('submit')->setValue('Add');
 
          $request = $this->getRequest();
          if ($request->isPost()) {
-             $album = new Album();
-             $form->setInputFilter($album->getInputFilter());
+             $livre = new Livre();
+             $form->setInputFilter($livre->getInputFilter());
              $form->setData($request->getPost());
 
              if ($form->isValid()) {
-                 $album->exchangeArray($form->getData());
-                 $this->getAlbumTable()->saveAlbum($album);
+                 $livre->exchangeArray($form->getData());
+                 $this->getLivreTable()->saveLivre($livre);
 
-                 // Redirect to list of albums
-                 return $this->redirect()->toRoute('album');
+                 // Redirect to list of livres
+                 return $this->redirect()->toRoute('livre');
              }
          }
          return array('form' => $form);
@@ -43,36 +43,36 @@ class AlbumController extends AbstractActionController {
     public function editAction() {
         $id = (int) $this->params()->fromRoute('id', 0);
          if (!$id) {
-             return $this->redirect()->toRoute('album', array(
+             return $this->redirect()->toRoute('livre', array(
                  'action' => 'add'
              ));
          }
 
-         // Get the Album with the specified id.  An exception is thrown
+         // Get the Livre with the specified id.  An exception is thrown
          // if it cannot be found, in which case go to the index page.
          try {
-             $album = $this->getAlbumTable()->getAlbum($id);
+             $livre = $this->getLivreTable()->getLivre($id);
          }
          catch (\Exception $ex) {
-             return $this->redirect()->toRoute('album', array(
+             return $this->redirect()->toRoute('livre', array(
                  'action' => 'index'
              ));
          }
 
-         $form  = new AlbumForm();
-         $form->bind($album);
+         $form  = new LivreForm();
+         $form->bind($livre);
          $form->get('submit')->setAttribute('value', 'Edit');
 
          $request = $this->getRequest();
          if ($request->isPost()) {
-             $form->setInputFilter($album->getInputFilter());
+             $form->setInputFilter($livre->getInputFilter());
              $form->setData($request->getPost());
 
              if ($form->isValid()) {
-                 $this->getAlbumTable()->saveAlbum($album);
+                 $this->getLivreTable()->saveLivre($livre);
 
-                 // Redirect to list of albums
-                 return $this->redirect()->toRoute('album');
+                 // Redirect to list of livres
+                 return $this->redirect()->toRoute('livre');
              }
          }
 
@@ -85,7 +85,7 @@ class AlbumController extends AbstractActionController {
     public function deleteAction() {
         $id = (int) $this->params()->fromRoute('id', 0);
          if (!$id) {
-             return $this->redirect()->toRoute('album');
+             return $this->redirect()->toRoute('livre');
          }
 
          $request = $this->getRequest();
@@ -94,26 +94,26 @@ class AlbumController extends AbstractActionController {
 
              if ($del == 'Yes') {
                  $id = (int) $request->getPost('id');
-                 $this->getAlbumTable()->deleteAlbum($id);
+                 $this->getLivreTable()->deleteLivre($id);
              }
 
-             // Redirect to list of albums
-             return $this->redirect()->toRoute('album');
+             // Redirect to list of livres
+             return $this->redirect()->toRoute('livre');
          }
 
          return array(
              'id'    => $id,
-             'album' => $this->getAlbumTable()->getAlbum($id)
+             'livre' => $this->getLivreTable()->getLivre($id)
          );
     }
     
-    public function getAlbumTable()
+    public function getLivreTable()
      {
-         if (!$this->albumTable) {
+         if (!$this->livreTable) {
              $sm = $this->getServiceLocator();
-             $this->albumTable = $sm->get('Album\Model\AlbumTable');
+             $this->livreTable = $sm->get('Livre\Model\LivreTable');
          }
-         return $this->albumTable;
+         return $this->livreTable;
      }
      
 }
