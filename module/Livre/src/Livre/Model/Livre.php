@@ -9,7 +9,6 @@ namespace Livre\Model;
 class Livre {
 
     public $id;
-    public $artist;
     public $title;
     protected $inputFilter;    
    
@@ -43,24 +42,6 @@ class Livre {
                  ),
              ));
 
-             $inputFilter->add(array(
-                 'name'     => 'artist',
-                 'required' => true,
-                 'filters'  => array(
-                     array('name' => 'StripTags'),
-                     array('name' => 'StringTrim'),
-                 ),
-                 'validators' => array(
-                     array(
-                         'name'    => 'StringLength',
-                         'options' => array(
-                             'encoding' => 'UTF-8',
-                             'min'      => 1,
-                             'max'      => 100,
-                         ),
-                     ),
-                 ),
-             ));
 
              $inputFilter->add(array(
                  'name'     => 'title',
