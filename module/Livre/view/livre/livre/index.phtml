@@ -18,13 +18,14 @@
  <?php foreach ($livres as $livre) : ?>
  <tr>
      <td><?php
-     echo $this->escapeHtml($livre->title);?></td>
-     <td><?php echo $this->escapeHtml($livre->artist);?></td>
+              var_dump($livres);
+     echo $this->escapeHtml($livres->title);?></td>
+     <td><?php echo $this->escapeHtml($livres->artist);?></td>
      <td>
          <a href="<?php echo $this->url('livre',
-             array('action'=>'edit', 'id' => $livre->id));?>">Edit</a>
+             array('action'=>'edit', 'id' => $livres->id));?>">Edit</a>
          <a href="<?php echo $this->url('livre',
-             array('action'=>'delete', 'id' => $livre->id));?>">Delete</a>
+             array('action'=>'delete', 'id' => $livres->id));?>">Delete</a>
      </td>
  </tr>
  <?php endforeach; ?>
