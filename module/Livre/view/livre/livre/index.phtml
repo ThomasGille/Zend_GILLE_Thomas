@@ -27,6 +27,8 @@
              array('action'=>'edit', 'id' => $livre->id));?>">Edit</a>
          <a href="<?php echo $this->url('livre',
              array('action'=>'delete', 'id' => $livre->id));?>">Delete</a>
+         <a href="<?php echo $this->url('livre',
+             array('action'=>'critique', 'id' => $livre->id));?>">Criticize</a>
      </td>
  </tr>
  <?php endforeach; ?>
