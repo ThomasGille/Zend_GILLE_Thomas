@@ -29,10 +29,10 @@ namespace Livre\Form;
              ),
          ));
          $this->add(array(
-             'name' => 'artist',
+             'name' => 'auteur',
              'type' => 'Text',
              'options' => array(
-                 'label' => 'Artist',
+                 'label' => 'Auteur',
              ),
          ));
          $this->add(array(

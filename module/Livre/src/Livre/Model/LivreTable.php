@@ -39,7 +39,7 @@ class LivreTable {
 
     public function saveLivre(Livre $livre) {
         $data = array(
-            'artist' => $livre->artist,
+            'auteur' => $livre->auteur,
             'title' => $livre->title,
         );
 
