@@ -12,7 +12,7 @@
  <table class="table">
  <tr>
      <th>Title</th>
-     <th>Artist</th>
+     <th>Auteur</th>
      <th>&nbsp;</th>
  </tr>
  <?php foreach ($livres as $livre) : ?>
@@ -20,6 +20,8 @@
      <td><?php
               //print_r($livre);
      echo $this->escapeHtml($livre->title);?></td>
+     <td><?php 
+     echo $this->escapeHtml($livre->auteur);?></td>
      <td>
          <a href="<?php echo $this->url('livre',
              array('action'=>'edit', 'id' => $livre->id));?>">Edit</a>
