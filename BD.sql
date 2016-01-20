@@ -24,24 +24,24 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`idUser`, `user_name`, `pass_word`) VALUES
 (1, 'root', 'root');
 
-CREATE TABLE IF NOT EXISTS `Livre` (
-  `Id` int(11) NOT NULL,
-  `Titre` varchar(30) NOT NULL
+CREATE TABLE IF NOT EXISTS `livre` (
+  `id` int(11) NOT NULL,
+  `titre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `Livre`
-  ADD PRIMARY KEY (`Id`);
+ALTER TABLE `livre`
+  ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `Livre`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `livre`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 
-CREATE TABLE IF NOT EXISTS `Critique` (
-  `IdUser` int(11) NOT NULL,
-  `IdLivre` int(11) NOT NULL,
-  `Note` int(11) NOT NULL
+CREATE TABLE IF NOT EXISTS `critique` (
+  `idUser` int(11) NOT NULL,
+  `idLivre` int(11) NOT NULL,
+  `note` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
-ALTER TABLE `Critique`
-  ADD PRIMARY KEY (`IdUser`,`IdLivre`);
+ALTER TABLE `critique`
+  ADD PRIMARY KEY (`idUser`,`idLivre`);
