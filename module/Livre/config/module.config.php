@@ -3,22 +3,22 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Album\Controller\Album' => 'Album\Controller\AlbumController',
+            'Livre\Controller\Livre' => 'Livre\Controller\LivreController',
         ),
     ),
 // The following section is new and should be added to your file
     'router' => array(
         'routes' => array(
-            'album' => array(
+            'livre' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/album[/:action][/:id]',
+                    'route' => '/livre[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Album\Controller\Album',
+                        'controller' => 'Livre\Controller\Livre',
                         'action' => 'index',
                     ),
                 ),
@@ -27,7 +27,7 @@ return array(
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'album' => __DIR__ . '/../view',
+            'livre' => __DIR__ . '/../view',
         ),
     ),
 );
