@@ -16,6 +16,7 @@ class Livre {
     public function exchangeArray($data) {
         $this->id = (!empty($data['id'])) ? $data['id'] : null;
         $this->title = (!empty($data['title'])) ? $data['title'] : null;
+        $this->auteur = (!empty($data['auteur'])) ? $data['auteur'] : null;
     }
     
     // Add the following method:
