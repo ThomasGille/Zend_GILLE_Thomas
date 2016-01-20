@@ -1,12 +1,12 @@
 <?php
 
-namespace Album\Model;
+namespace Livre\Model;
  // Add these import statements
  use Zend\InputFilter\InputFilter;
  use Zend\InputFilter\InputFilterAwareInterface;
  use Zend\InputFilter\InputFilterInterface;
 
-class Album {
+class Livre {
 
     public $id;
     public $artist;
