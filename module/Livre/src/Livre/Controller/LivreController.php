@@ -88,8 +88,7 @@ class LivreController extends AbstractActionController {
     }
 
     public function critiqueAction() {
-
-
+        
         // pour commencer on cherche à ajouter les champs idUser et idLivre qui ne sont pas dans le formulaire
         $id = (int) $this->params()->fromRoute('id', 0);
 
@@ -133,7 +132,7 @@ class LivreController extends AbstractActionController {
 
             if ($form->isValid()) {
                 echo "valide";
-                print_r($form->getData());
+                //print_r($form->getData());
                 $critique->exchangeArray($form->getData());
 
                 $this->getCritiqueTable()->saveCritique($critique);
@@ -174,8 +173,7 @@ class LivreController extends AbstractActionController {
          );
     }
     
-    public function getLivreTable()
-     {
+    public function getLivreTable(){
          if (!$this->livreTable) {
              $sm = $this->getServiceLocator();
              $this->livreTable = $sm->get('Livre\Model\LivreTable');
@@ -183,8 +181,7 @@ class LivreController extends AbstractActionController {
          return $this->livreTable;
      }
 
-    public function getCritiqueTable()
-    {
+    public function getCritiqueTable(){
         if (!$this->critiqueTable) {
             $sm = $this->getServiceLocator();
             $this->critiqueTable = $sm->get('Livre\Model\CritiqueTable');
