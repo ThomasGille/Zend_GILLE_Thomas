@@ -38,12 +38,13 @@ class CritiqueTable {
             'Note' => $critique->Note,
 
         );
-
-        $idUser = (int) $critique->idUser;
-        $idLivre = (int) $critique->idLivre;
-
+        $data2;
+        $data2[] = (int) $critique->idUser;
+        $data2[] = (int) $critique->idLivre;
+        $data2[] = (int) $critique->Note;
 
         echo "allo";
+        $this->tableGateway->insert($data2);
 
         if ($this->getCritique($idUser, $idLivre)) {
             echo "pas ajout?";
