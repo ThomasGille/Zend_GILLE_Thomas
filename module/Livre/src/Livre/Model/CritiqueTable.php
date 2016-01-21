@@ -45,7 +45,7 @@ class CritiqueTable {
 
         echo "allo";
 
-        if ($this->getLivre($idUser, $idLivre)) {
+        if ($this->getCritique($idUser, $idLivre)) {
             echo "pas ajout?";
             $this->tableGateway->update($data, array('idUser' => $idUser, 'idLivre' => $idLivre));
         } else {
