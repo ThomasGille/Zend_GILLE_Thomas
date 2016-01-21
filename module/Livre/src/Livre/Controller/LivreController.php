@@ -11,6 +11,7 @@ use Livre\Form\CritiqueForm;
  
 class LivreController extends AbstractActionController {
     protected $livreTable;
+    protected $critiqueTable;
     // protected $user;
     public function indexAction() {
         
@@ -92,25 +93,37 @@ class LivreController extends AbstractActionController {
         // pour commencer on cherche à ajouter les champs idUser et idLivre qui ne sont pas dans le formulaire
         $id = (int) $this->params()->fromRoute('id', 0);
 
+        // normalement ca redirige si il n'y a pas de valeur...
         if (!$id) {
-            /*return $this->redirect()->toRoute('livre', array(
+            return $this->redirect()->toRoute('livre', array(
                 'action' => 'critique'
-            ));*/
+            ));
         }
 
-        $critique = new Critique();
-        $critique->idLivre = $id;
-
         $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
-        $critique->idUser = $user->idUser;
 
+        // on essaie de récuperer une critique qui aurait déja ete faite
+        try {
+            $critique = $this->getCritiqueTable()->getCritique($id, $user->idUser);
+        }
+        // ou ca la crée
+        catch (\Exception $ex) {
+            $critique = new Critique();
+            $critique->idLivre = $id;
+            $critique->idUser = $user->idUser;
+        }
 
 
         $form = new CritiqueForm();
+
+
+        // on remplit le form avec les valeures de $critique
         $form->bind($critique);
+
         $form->get('submit')->setValue('Ajouter');
 
         $request = $this->getRequest();
+
 
         // si tout est bon
         if ($request->isPost()) {
@@ -127,9 +140,7 @@ class LivreController extends AbstractActionController {
                 // Redirect to list of livres
                 //return $this->redirect()->toRoute('livre');
             }
-            else {
-                echo "pas valide?";
-            }
+
         }
         return array(
             'id' => $id,

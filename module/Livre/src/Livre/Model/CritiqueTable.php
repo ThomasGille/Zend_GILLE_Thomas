@@ -4,7 +4,7 @@ namespace Livre\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class LivreTable {
+class CritiqueTable {
 
     protected $tableGateway;
 
@@ -31,6 +31,7 @@ class LivreTable {
     }
 
     public function saveCritique(Critique $critique) {
+        echo "bonjour";
         $data = array(
             'idUser' => $critique->idUser,
             'idLivre' => $critique->idLivre,
@@ -42,9 +43,13 @@ class LivreTable {
         $idLivre = (int) $critique->idLivre;
 
 
+        echo "allo";
+
         if ($this->getLivre($idUser, $idLivre)) {
+            echo "pas ajout?";
             $this->tableGateway->update($data, array('idUser' => $idUser, 'idLivre' => $idLivre));
         } else {
+            echo "ajout";
             $this->tableGateway->insert($data);
         }
 
