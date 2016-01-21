@@ -14,6 +14,7 @@ class Critique {
     protected $inputFilter;    
    
     public function exchangeArray($data) {
+
         $this->idUser = (!empty($data['idUser'])) ? $data['idUser'] : null;
         $this->idLivre = (!empty($data['idLivre'])) ? $data['idLivre'] : null;
         $this->Note = (!empty($data['Note'])) ? $data['Note'] : null;

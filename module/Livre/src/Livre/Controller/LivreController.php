@@ -116,7 +116,6 @@ class LivreController extends AbstractActionController {
 
         $form = new CritiqueForm();
 
-
         // on remplit le form avec les valeures de $critique
         $form->bind($critique);
 
@@ -134,7 +133,9 @@ class LivreController extends AbstractActionController {
 
             if ($form->isValid()) {
                 echo "valide";
+                print_r($form->getData());
                 $critique->exchangeArray($form->getData());
+
                 $this->getCritiqueTable()->saveCritique($critique);
 
                 // Redirect to list of livres

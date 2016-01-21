@@ -4,17 +4,14 @@
  $title = 'Add critizm';
  $this->headTitle($title);
  ?>
-
-
-
  <h1><?php echo $this->escapeHtml($title); ?></h1>
  <?php
  $form->setAttribute('action', $this->url('livre', array('action' => 'critique', 'id' => $this->id,)));
  $form->prepare();
 
  echo $this->form()->openTag($form);
- echo $this->formHidden($form->get('idUser'));
- echo $this->formHidden($form->get('idLivre'));
- echo $this->formRow($form->get('Note'));
- echo $this->formSubmit($form->get('submit'));
+  echo $this->formHidden($form->get('idUser'));
+  echo $this->formHidden($form->get('idLivre'));
+  echo $this->formRow($form->get('Note'));
+  echo $this->formSubmit($form->get('submit'));
  echo $this->form()->closeTag();
