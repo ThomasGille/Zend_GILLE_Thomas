@@ -4,9 +4,12 @@ namespace Livre;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-// Add these import statements:
+
 use Livre\Model\Livre;
 use Livre\Model\LivreTable;
+
+use Livre\Model\Critique;
+use Livre\Model\CritiqueTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -42,6 +45,18 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface {
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Livre());
                     return new TableGateway('livre', $dbAdapter, null, $resultSetPrototype);
+                },
+
+                'Livre\Model\CritiqueTable' => function($sm) {
+                    $tableGateway = $sm->get('CritiqueTableGateway');
+                    $table = new CritiqueTable($tableGateway);
+                    return $table;
+                },
+                'CritiqueTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Critique());
+                    return new TableGateway('critique', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );
