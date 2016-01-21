@@ -32,13 +32,13 @@ class CritiqueForm extends Form {
             ),
         ));
         $this->add(array(
-             'name' => 'submit',
-             'type' => 'Submit',
-             'attributes' => array(
-                 'value' => 'Go',
-                 'id' => 'submitbutton',
-             ),
-         ));
+            'name' => 'submit',
+            'type' => 'Submit',
+            'attributes' => array(
+                'value' => 'Go',
+                'id' => 'submitbutton',
+            ),
+        ));
     }
 
 }

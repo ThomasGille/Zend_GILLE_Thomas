@@ -4,13 +4,14 @@ namespace Livre\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
- use Livre\Model\Livre;          // <-- Add this import
- use Livre\Form\LivreForm;       // <-- Add this import
+use Livre\Model\Livre;
+use Livre\Form\LivreForm;
+use Livre\Model\Critique;
 use Livre\Form\CritiqueForm;
  
 class LivreController extends AbstractActionController {
     protected $livreTable;
-//    protected $user;
+    // protected $user;
     public function indexAction() {
         
         $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
@@ -25,9 +26,11 @@ class LivreController extends AbstractActionController {
          $form->get('submit')->setValue('Add');
 
          $request = $this->getRequest();
+
          if ($request->isPost()) {
              $livre = new Livre();
              $form->setInputFilter($livre->getInputFilter());
+
              $form->setData($request->getPost());
 
              if ($form->isValid()) {
@@ -84,24 +87,54 @@ class LivreController extends AbstractActionController {
     }
 
     public function critiqueAction() {
+
+
+        // pour commencer on cherche à ajouter les champs idUser et idLivre qui ne sont pas dans le formulaire
+        $id = (int) $this->params()->fromRoute('id', 0);
+
+        if (!$id) {
+            /*return $this->redirect()->toRoute('livre', array(
+                'action' => 'critique'
+            ));*/
+        }
+
+        $critique = new Critique();
+        $critique->idLivre = $id;
+
+        $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
+        $critique->idUser = $user->idUser;
+
+
+
         $form = new CritiqueForm();
-        $form->get('submit')->setValue('Add');
+        $form->bind($critique);
+        $form->get('submit')->setValue('Ajouter');
 
         $request = $this->getRequest();
+
+        // si tout est bon
         if ($request->isPost()) {
-            $livre = new Livre();
-            $form->setInputFilter($livre->getInputFilter());
+
+            $form->setInputFilter($critique->getInputFilter());
+
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                $livre->exchangeArray($form->getData());
-                $this->getLivreTable()->saveLivre($livre);
+                echo "valide";
+                $critique->exchangeArray($form->getData());
+                $this->getCritiqueTable()->saveCritique($critique);
 
                 // Redirect to list of livres
-                return $this->redirect()->toRoute('livre');
+                //return $this->redirect()->toRoute('livre');
+            }
+            else {
+                echo "pas valide?";
             }
         }
-        return array('form' => $form);
+        return array(
+            'id' => $id,
+            'form' => $form,
+        );
     }
 
     public function deleteAction() {
@@ -137,5 +170,14 @@ class LivreController extends AbstractActionController {
          }
          return $this->livreTable;
      }
+
+    public function getCritiqueTable()
+    {
+        if (!$this->critiqueTable) {
+            $sm = $this->getServiceLocator();
+            $this->critiqueTable = $sm->get('Livre\Model\CritiqueTable');
+        }
+        return $this->critiqueTable;
+    }
      
 }
