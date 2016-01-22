@@ -23,7 +23,8 @@ class CritiqueTable {
         $idLivre = (int) $idLivre;
 
         $rowset = $this->tableGateway->select(array('idUser' => $idUser, 'idLivre' => $idLivre));
-        $row = $rowset->current();
+        
+        $row = $rowset->current();var_dump($row);
         if (!$row) {
             throw new \Exception("Could not find row for user $idUser");
         }
@@ -31,23 +32,18 @@ class CritiqueTable {
     }
 
     public function saveCritique(Critique $critique) {
-        echo "bonjour";
+        
         $data = array(
             'idUser' => $critique->idUser,
             'idLivre' => $critique->idLivre,
             'Note' => $critique->Note,
 
         );
-        $data2;
-        $data2[] = (int) $critique->idUser;
-        $data2[] = (int) $critique->idLivre;
-        $data2[] = (int) $critique->Note;
 
-        echo "allo";
-        $this->tableGateway->insert($data2);
-
-        if ($this->getCritique($idUser, $idLivre)) {
-            echo "pas ajout?";
+        
+        echo "Patate";
+        if ($this->getCritique($data['idUser'], $data['idLivre'])) {
+            echo "update";
             $this->tableGateway->update($data, array('idUser' => $idUser, 'idLivre' => $idLivre));
         } else {
             echo "ajout";
