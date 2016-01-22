@@ -35,7 +35,7 @@ class CritiqueTable {
      * retourne un boolean
      * Dis si il existe deja une insertion pour cet user et ce livre
      */
-    public function estCritique($idUser, $idLivre) {
+    public function estDejaCritique($idUser, $idLivre) {
         $idUser = (int) $idUser;
         $idLivre = (int) $idLivre;
 
@@ -58,7 +58,7 @@ class CritiqueTable {
 
         
         
-        if ($this->estCritique($data['idUser'], $data['idLivre'])) {
+        if ($this->estDejaCritique($data['idUser'], $data['idLivre'])) {
             //echo "update";
             $this->tableGateway->update($data, array('idUser' => $data['idUser'], 'idLivre' => $data['idLivre']));
         } else {

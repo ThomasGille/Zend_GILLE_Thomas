@@ -13,15 +13,20 @@
  <tr>
      <th>Titre</th>
      <th>Auteur</th>
+     <th>Note</th>
      <th>&nbsp;</th>
  </tr>
  <?php foreach ($livres as $livre) : ?>
  <tr>
      <td><?php
-
-     echo $this->escapeHtml($livre->title);?></td>
+     echo $this->escapeHtml($livre->title);
+     ?></td>
      <td><?php 
-     echo $this->escapeHtml($livre->auteur);?></td>
+     echo $this->escapeHtml($livre->auteur);
+     ?></td>
+     <td><?php 
+     echo $this->escapeHtml($livre->auteur);
+     ?></td>
      <td>
          <a href="<?php echo $this->url('livre',
              array('action'=>'edit', 'id' => $livre->id));?>">Edit</a>
