@@ -24,10 +24,26 @@ class CritiqueTable {
 
         $rowset = $this->tableGateway->select(array('idUser' => $idUser, 'idLivre' => $idLivre));
         
-        $row = $rowset->current();var_dump($row);
+        $row = $rowset->current();
         if (!$row) {
             throw new \Exception("Could not find row for user $idUser");
         }
+        return $row;
+    }
+    
+    /*
+     * retourne un boolean
+     * Dis si il existe deja une insertion pour cet user et ce livre
+     */
+    public function estCritique($idUser, $idLivre) {
+        $idUser = (int) $idUser;
+        $idLivre = (int) $idLivre;
+
+        $rowset = $this->tableGateway->select(array('idUser' => $idUser, 'idLivre' => $idLivre));
+        
+        $row = $rowset->current();
+        //var_dump($row);
+        
         return $row;
     }
 
@@ -41,12 +57,12 @@ class CritiqueTable {
         );
 
         
-        echo "Patate";
-        if ($this->getCritique($data['idUser'], $data['idLivre'])) {
-            echo "update";
-            $this->tableGateway->update($data, array('idUser' => $idUser, 'idLivre' => $idLivre));
+        
+        if ($this->estCritique($data['idUser'], $data['idLivre'])) {
+            //echo "update";
+            $this->tableGateway->update($data, array('idUser' => $data['idUser'], 'idLivre' => $data['idLivre']));
         } else {
-            echo "ajout";
+            //echo "ajout";
             $this->tableGateway->insert($data);
         }
 

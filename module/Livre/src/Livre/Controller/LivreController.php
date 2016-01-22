@@ -131,10 +131,7 @@ class LivreController extends AbstractActionController {
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                echo "valide";
-                //print_r($form->getData());
-                //$critique->exchangeArray($form->getData());
-
+               
                 $this->getCritiqueTable()->saveCritique($critique);
 
                 // Redirect to list of livres
