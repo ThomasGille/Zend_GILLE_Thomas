@@ -1,3 +1,13 @@
+
+INSTALLATION DE LA BD
+
+Executer simplement le script BD.sql sur votre serveur MySQL.
+Enfin il faut aller créer le fichier local.php qui se trouve dans config/autoload/local.php
+    le nom d'utilisateur doit être  "zendUser" !!!
+Insérer les parametre de vôtre serveur MySQL.
+
+
+
 ZendSkeletonApplication
 =======================
 
