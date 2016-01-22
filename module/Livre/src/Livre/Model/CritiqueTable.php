@@ -89,5 +89,16 @@ class CritiqueTable {
         return $moyenne;
     }
 
+    public function eraseCritique($idUser, $idLivre) {
+        $idUser = (int) $idUser;
+        $idLivre = (int) $idLivre;
+
+        echo "$idLivre $idUser";
+
+        $this->tableGateway->delete(array('idUser' => $idUser, 'idLivre' => $idLivre));
+
+    }
+
+
 
 }

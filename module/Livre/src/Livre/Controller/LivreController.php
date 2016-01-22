@@ -12,11 +12,12 @@ use Livre\Form\CritiqueForm;
 class LivreController extends AbstractActionController {
     protected $livreTable;
     protected $critiqueTable;
-    // protected $user;
+
+
     public function indexAction() {
         
         $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
-        //print_r($user);
+
         return new ViewModel(array(
              'livres' => $this->getLivreTable()->fetchAll(),
              'critiqueTable' => $this->getCritiqueTable()
@@ -144,6 +145,19 @@ class LivreController extends AbstractActionController {
             'id' => $id,
             'form' => $form,
         );
+    }
+
+    public function supprCritiqueAction(){
+
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
+        $user = $user->idUser;
+
+        $this->getCritiqueTable()->eraseCritique($user, $id);
+
+        return $this->redirect()->toRoute('livre');
+
+
     }
 
     public function deleteAction() {
