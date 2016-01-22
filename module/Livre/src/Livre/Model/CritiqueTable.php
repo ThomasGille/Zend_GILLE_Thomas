@@ -69,8 +69,25 @@ class CritiqueTable {
 
     }
 
-    public function deleteLivre($id) {
-        // pas encore modifié // $this->tableGateway->delete(array('id' => (int) $id));
+    public function getAverageMark($idLivre){
+
+        $idLivre = (int) $idLivre;
+
+        // on recupere toutes les notes de ce livre
+        $rowset = $this->tableGateway->select(array('idLivre' => $idLivre));
+
+        $moyenne = 0;
+
+        if (count($rowset)) {
+            foreach ($rowset as $row) {
+                $row = $rowset->current();
+                $moyenne += $row->Note;
+            }
+            $moyenne /= count($rowset);
+        }
+
+        return $moyenne;
     }
+
 
 }

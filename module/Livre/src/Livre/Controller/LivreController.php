@@ -18,7 +18,8 @@ class LivreController extends AbstractActionController {
         $user = $this->getServiceLocator()->get('SanAuth\Model\MyAuthStorage')->read();
         //print_r($user);
         return new ViewModel(array(
-             'livres' => $this->getLivreTable()->fetchAll()
+             'livres' => $this->getLivreTable()->fetchAll(),
+             'critiqueTable' => $this->getCritiqueTable()
          ));
     }
 
@@ -135,7 +136,7 @@ class LivreController extends AbstractActionController {
                 $this->getCritiqueTable()->saveCritique($critique);
 
                 // Redirect to list of livres
-                //return $this->redirect()->toRoute('livre');
+                return $this->redirect()->toRoute('livre');
             }
 
         }

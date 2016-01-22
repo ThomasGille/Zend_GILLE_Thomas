@@ -1,6 +1,7 @@
 <?php
  // module/Livre/view/livre/livre/index.phtml:
 
+
  $title = 'My livres';
  $this->headTitle($title);
  ?>
@@ -13,7 +14,7 @@
  <tr>
      <th>Titre</th>
      <th>Auteur</th>
-     <th>Note</th>
+     <th>Moyenne</th>
      <th>&nbsp;</th>
  </tr>
  <?php foreach ($livres as $livre) : ?>
@@ -25,7 +26,7 @@
      echo $this->escapeHtml($livre->auteur);
      ?></td>
      <td><?php 
-     echo $this->escapeHtml($livre->auteur);
+         echo $critiqueTable->getAverageMark($livre->id);
      ?></td>
      <td>
          <a href="<?php echo $this->url('livre',
@@ -38,3 +39,5 @@
  </tr>
  <?php endforeach; ?>
  </table>
+
+
